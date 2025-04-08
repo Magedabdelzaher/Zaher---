@@ -11,7 +11,7 @@
 
     function addToCart(name, price) {
       cart.push({ name, price });
-      alert(تمت إضافة ${name} إلى السلة.);
+      alert(`تمت إضافة ${name} إلى السلة.`);
       updateCart();
     }
 
@@ -21,10 +21,10 @@
       cartItems.innerHTML = '';
       let sum = 0;
       cart.forEach((item, index) => {
-        cartItems.innerHTML += <li class='mb-2'>${item.name} - ${item.price} EGP <button onclick="removeFromCart(${index})" class="text-red-500 ml-2">حذف</button></li>;
+        cartItems.innerHTML += `<li class='mb-2'>${item.name} - ${item.price} EGP <button onclick="removeFromCart(${index})" class="text-red-500 ml-2">حذف</button></li>`;
         sum += item.price;
       });
-      total.textContent = الإجمالي: ${sum} EGP;
+      total.textContent = `الإجمالي: ${sum} EGP`;
     }
 
     function removeFromCart(index) {
