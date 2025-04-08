@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zaher - متجر الملابس</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    let cart = [];
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      alert(`تمت إضافة ${name} إلى السلة.`);
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const total = document.getElementById('total');
+      cartItems.innerHTML = '';
+      let sum = 0;
+      cart.forEach((item, index) => {
+        cartItems.innerHTML += `<li class='mb-2'>${item.name} - ${item.price} EGP <button onclick="removeFromCart(${index})" class="text-red-500 ml-2">حذف</button></li>`;
+        sum += item.price;
+      });
+      total.textContent = `الإجمالي: ${sum} EGP`;
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+  </script>
+</head>
+<body class="bg-white text-gray-900 font-sans">
+  <!-- Header -->
+  <header class="bg-black text-white p-4 flex justify-between items-center">
+    <div class="flex items-center space-x-4">
+      <img src="logo.jpg" alt="Zaher Logo" class="w-12 h-12 rounded" />
+      <h1 class="text-2xl font-bold">Zaher</h1>
+    </div>
+    <nav class="space-x-4">
+      <a href="#home" class="hover:underline">الرئيسية</a>
+      <a href="#products" class="hover:underline">المنتجات</a>
+      <a href="#about" class="hover:underline">من نحن</a>
+      <a href="#contact" class="hover:underline">تواصل معنا</a>
+      <a href="#cart" class="hover:underline">السلة</a>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="text-center p-10 bg-gray-100">
+    <h2 class="text-3xl font-bold mb-4">مرحباً بك في Zaher</h2>
+    <p class="text-lg">أفضل تشكيلة من الملابس العصرية</p>
+  </section>
+
+  <!-- Products Section -->
+  <section id="products" class="p-10">
+    <h2 class="text-2xl font-bold mb-6 text-center">منتجاتنا</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div class="border p-4 rounded-lg shadow">
+        <img src="https://via.placeholder.com/300x300" alt="Product" class="w-full h-60 object-cover mb-4 rounded"/>
+        <h3 class="text-lg font-semibold">تيشيرت كلاسيك</h3>
+        <p class="text-gray-600">خامة قطن 100%</p>
+        <p class="font-bold mt-2">EGP 250</p>
+        <button onclick="addToCart('تيشيرت كلاسيك', 250)" class="mt-3 bg-black text-white px-4 py-2 rounded">أضف للسلة</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Section -->
+  <section id="cart" class="p-10 bg-gray-50">
+    <h2 class="text-2xl font-bold mb-4">سلة المشتريات</h2>
+    <ul id="cart-items" class="mb-4"></ul>
+    <p id="total" class="font-bold mb-4">الإجمالي: 0 EGP</p>
+    <a href="#checkout" class="bg-black text-white px-4 py-2 rounded">الذهاب للدفع</a>
+  </section>
+
+  <!-- Checkout Section -->
+  <section id="checkout" class="p-10">
+    <h2 class="text-2xl font-bold mb-4">الدفع</h2>
+    <form class="space-y-4 max-w-md">
+      <input type="text" placeholder="الاسم الكامل" class="w-full p-2 border rounded" required />
+      <input type="text" placeholder="العنوان" class="w-full p-2 border rounded" required />
+      <input type="tel" placeholder="رقم الهاتف" class="w-full p-2 border rounded" required />
+      <select class="w-full p-2 border rounded">
+        <option>اختر وسيلة الدفع</option>
+        <option>فيزا (عبر Stripe)</option>
+        <option>فودافون كاش</option>
+      </select>
+      <p class="text-sm text-gray-600">في حالة الدفع بفودافون كاش، يرجى التحويل إلى الرقم: 010xxxxxxxx ثم تأكيد الطلب.</p>
+      <button type="submit" class="bg-black text-white px-4 py-2 rounded">تأكيد الطلب</button>
+    </form>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="p-10 bg-gray-100">
+    <h2 class="text-2xl font-bold mb-4">من نحن</h2>
+    <p>نحن في Zaher نقدم لك أحدث صيحات الموضة بجودة عالية وسعر مناسب. رضاكم هو أولويتنا.</p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="p-10">
+    <h2 class="text-2xl font-bold mb-4">تواصل معنا</h2>
+    <form class="space-y-4 max-w-md">
+      <input type="text" placeholder="الاسم" class="w-full p-2 border rounded" required />
+      <input type="email" placeholder="البريد الإلكتروني" class="w-full p-2 border rounded" required />
+      <textarea placeholder="رسالتك" class="w-full p-2 border rounded" rows="4"></textarea>
+      <button type="submit" class="bg-black text-white px-4 py-2 rounded">إرسال</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white p-6 text-center">
+    <p>&copy; 2025 Zaher. جميع الحقوق محفوظة.</p>
+    <div class="mt-2 text-sm">
+      <a href="#" class="underline">سياسة الخصوصية</a> |
+      <a href="#" class="underline">الشحن والدفع</a>
+    </div>
+  </footer>
+</body>
+</html>
