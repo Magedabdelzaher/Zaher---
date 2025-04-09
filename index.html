@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Zaher - متجر الملابس</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-papox42+Fc87q9mZzq9v3h3zPTUfYk1V7dQ6iCkmR0KNFy4Yrkf7v4XbwZkqntdcR6CU7kCFey0rx0VzL1xfZg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script>
     let cart = [];
 
     function addToCart(name, price) {
       cart.push({ name, price });
-      alert(`تمت إضافة ${name} إلى السلة.`);
+      alert(تمت إضافة ${name} إلى السلة.);
       updateCart();
     }
 
@@ -20,10 +21,10 @@
       cartItems.innerHTML = '';
       let sum = 0;
       cart.forEach((item, index) => {
-        cartItems.innerHTML += `<li class='mb-2'>${item.name} - ${item.price} EGP <button onclick="removeFromCart(${index})" class="text-red-500 ml-2">حذف</button></li>`;
+        cartItems.innerHTML += <li class='mb-2'>${item.name} - ${item.price} EGP <button onclick="removeFromCart(${index})" class="text-red-500 ml-2">حذف</button></li>;
         sum += item.price;
       });
-      total.textContent = `الإجمالي: ${sum} EGP`;
+      total.textContent = الإجمالي: ${sum} EGP;
     }
 
     function removeFromCart(index) {
@@ -83,7 +84,7 @@
         <option>فيزا (عبر Stripe)</option>
         <option>فودافون كاش</option>
       </select>
-      <p class="text-sm text-gray-600">في حالة الدفع بفودافون كاش، يرجى التحويل إلى الرقم: 01094014044 ثم تأكيد الطلب.</p>
+      <p class="text-sm text-gray-600">في حالة الدفع بفودافون كاش، يرجى التحويل إلى الرقم: 010xxxxxxxx ثم تأكيد الطلب.</p>
       <button type="submit" class="bg-black text-white px-4 py-2 rounded">تأكيد الطلب</button>
     </form>
   </section>
